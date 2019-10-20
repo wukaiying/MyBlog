@@ -1,7 +1,10 @@
 package com.zhy.controller;
 
+import com.zhy.model.Article;
 import com.zhy.service.ArticleService;
 import com.zhy.utils.TransCodingUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -185,22 +189,24 @@ public class BackControl {
     /**
      * 跳转每一个分类的文章页面
      */
-    @GetMapping("/article/{category}")
-    public String categoryarticles(@PathVariable("category") String category,HttpServletRequest request, HttpServletResponse response,  Model model, HashMap<String, Object> map){
-//        String username = null;
-//        try {
-//            username = principal.getName();
-//        } catch (NullPointerException e){
-//            request.getSession().removeAttribute("lastUrl");
-//            return "index";
-//        }
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setHeader("lastUrl", (String) request.getSession().getAttribute("lastUrl"));
-//        return "index";
-        model.addAttribute("say",category);
-        map.put("hello", "欢迎进入HTML页面");
-        response.setHeader("articleId",String.valueOf(category));
+    @GetMapping("/category/{categoryName}")
+    public String categoryarticles(@PathVariable("categoryName") String categoryName,HttpServletRequest request, HttpServletResponse response,  Model model, HashMap<String, Object> map){
+
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         request.getSession().removeAttribute("lastUrl");
+        JSONArray articleMap = articleService.findAllArticlesByCategory( categoryName ,10,1);
+//        if(articleMap.get("articleTitle") != null){
+//            model.addAttribute("articleTitle",articleMap.get("articleTitle"));
+//            String articleTabloid = articleMap.get("articleTabloid");
+//            if(articleTabloid.length() <= 110){
+//                model.addAttribute("articleTabloid",articleTabloid);
+//            } else {
+//                model.addAttribute("articleTabloid",articleTabloid.substring(0,110));
+//            }
+//        }
+//        //将文章id存入响应头
+//        response.setHeader("articleId",String.valueOf(categoryName));
         return "categoryarticles";
     }
 

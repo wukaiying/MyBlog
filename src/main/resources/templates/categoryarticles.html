@@ -1,160 +1,268 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
-    <title>程序猿张先森 | 友链</title>
+    <title>程序猿张先森</title>
+    <base th:href="@{/}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <meta name="keywords" content="博客,个人,学习,IT,生活,张海洋,程序猿,springboot,java,后端，友链">
+    <meta name="keywords" content="博客,个人,学习,IT,生活,张海洋,程序猿,springboot,java,后端">
     <meta name="description" content="张海洋，正宗97后，爱编程。喜欢旅行、摄影、爱生活。专注于Spring,SpringBoot等后端技术探索，以及MySql,Oracle数据库开发和SSM,SSH等后端流行框架学习。">
 
     <link rel="icon" type="image/x-icon" href="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/favicon.ico">
     <link href="https://lib.baomitu.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/all.css">
-    <link rel="stylesheet" href="css/comment.css">
-    <link rel="stylesheet" href="css/friendlylink.css">
     <link href="https://lib.baomitu.com/font-awesome/5.8.0/css/fontawesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/plugs_paging.css">
 
     <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://lib.baomitu.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="js/lastUrl.js"></script>
     <script src="https://lib.baomitu.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+
 </head>
 <body>
 <div id="app">
-    <!--引入共有头部-->
-    <div th:replace="header :: header"></div>
-    <!--页面主体-->
-    <div id="main">
-        <div class="am-container">
-            <div class="am-g">
-                <div class="am-u-sm-12 am-u-lg-12">
-                    <div class="site-inner">
-                        <div class="zhy-friendlylink-title am-animation-slide-top">
-                            <i class="am-icon-hashtag "></i><span>大佬博客</span>
-                        </div>
-                        <div class="friendLinks zhy-friendlylink-author am-animation-slide-top">
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://blog.didispace.com" target="_blank">程序猿DD</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://www.spring4all.com" target="_blank">spring4all</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="https://www.liaoxuefeng.com" target="_blank">廖雪峰的官方网站</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://cxytiandi.com" target="_blank">猿天地</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="https://www.bysocket.com" target="_blank">泥瓦匠BYSocket</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://www.tianshouzhi.com" target="_blank">田守枝Java技术博客</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://blog.itmyhome.com" target="_blank">麦田技术博客</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://blog.720ui.com" target="_blank">梁桂钊</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://www.icnws.com" target="_blank">城南往事</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="https://blog.52itstyle.com" target="_blank">小柒博客</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://cmsblogs.com" target="_blank">chenssy</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="https://crossoverjie.top" target="_blank">crossoverJie</a>
-                            </div>
-                            <div class="friendLink">
-                                <i class="am-icon-street-view "></i>
-                                <a href="http://techblog.pub" target="_blank">原创博客技术联盟</a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="site-middle am-animation-slide-top">
-                        <div class="zhy-friendlylink-title">
-                            <i class="am-icon-hashtag "></i><span>友情链接</span>
-                        </div>
-                        <div id="friendLinks" class="friendLinks zhy-friendlylink-author">
-                            <!--填充友链信息-->
-                        </div>
-                    </div>
-                    <div class="zhy-link-word am-animation-slide-top">
-                        <div class="zhy-friendlylink-title">
-                            <i class="am-icon-hashtag "></i><span>链接公告</span>
-                        </div>
-                        <div class="zhy-friendlink-info">
-                            <p>任何一个行业，如果靠自己不断去探索和挖掘的话，对于自己的成长固然重要，但是有时站在巨人的肩膀上望向前方，你会发现
-                                成功和梦想其实就在前方。</p>
-                            <p>很感谢在我对于未来迷茫时帮助过我的人，也十分感谢那些素未谋面的大佬们在工作之余为我们分享技术前沿的风景。在此衷心的感谢他们，也希望更多的人在他们的帮助下共同进步。</p>
-                            <p><u><i>如果以上链接有涉及个人隐私问题，请及时联系我进行整改。</i></u></p>
-                        </div>
-                    </div>
-                    <div class="zhy-link-word am-animation-slide-top">
-                        <div class="zhy-friendlylink-title">
-                            <i class="am-icon-hashtag "></i><span>友链须知</span>
-                        </div>
-                        <div class="zhy-friendlylink-words">
-                            <blockquote>
-                                <ul>
-                                    <li>请确认贵站可正常访问</li>
-                                    <li>原创博客、技术博客、游记博客优先</li>
-                                    <li>二十篇以上个人原创文章，两个月内有新文章更新</li>
-                                </ul>
-                            </blockquote>
-                            <p style="font-size: 14px">
-                                本人会长期清理无法访问的链接，请保证自己的链接长期有效<br><br>
-                                有需要互换友链的朋友也可在下方给我留言。经核实后将上挂本站点 ^_^
-                            </p>
-                            <p style="color: red;font-size: 15px"><u>本人上挂贵站后，若您的站点未添加本站链接，该页面您的友链会消失的呦！！！</u></p>
-                        </div>
-                    </div>
-                    <div class="zhy-link-word">
-                        <div class="comment" style="margin: 0 auto 50px">
-                            <div class="comment-top">
-                                <div class="comment-top-input" th:if="${#httpServletRequest.remoteUser}">
-                                    <textarea id="comment" placeholder="客官，来说两句吧..."></textarea>
-                                </div>
-                                <div class="comment-top-input" th:unless="${#httpServletRequest.remoteUser}">
-                                    <div class="goToLogin">
-                                        &nbsp;&nbsp;&nbsp;<a id="toLogin">登录</a>后才可以发表留言呦...
-                                    </div>
-                                </div>
-                                <div class="commentBtn">
-                                    <button id="commentBtn" type="button" class="am-btn am-btn-secondary">发表留言</button>
-                                </div>
-                            </div>
-                            <div class="comment-bottom">
 
 
-                            </div>
+    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
+    <div class="header">
+        <div class="am-topbar" style="margin-bottom: 0">
+            <h1 class="am-topbar-brand">
+                <a href="/" class="blogTitleName"><img src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/zhy.png" class="imgStyle">程序猿张先森</a>
+            </h1>
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" style="background-color: #CCCCCC;border-color: white;border-radius: 6px" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+            <div id="personal-card" class="am-dropdown am-show-md-down" data-am-dropdown style="float: right">
+                <button id="personal-card-btn" class="am-btn am-btn-success am-dropdown-toggle" style="padding: 0"><img src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/weixin.jpg"><span class="am-icon-caret-down"></span></button>
+                <div class="am-dropdown-content">
+                    <div class="personal-card-show" style="text-align: center">
+                        <div class="personal-card-show-img">
+                            <img src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/weixin.jpg">
+                        </div>
+                        <div class="personal-card-show-name">
+                            <h4 style="font-weight: 500">张海洋</h4>
+                        </div>
+                        <div class="personal-card-show-words">
+                            <small style="font-size: 13px;color: #808080ad;">多年以后，愿你的城市，有清风，有烈酒，也有人是你的归途。</small>
+                        </div>
+                        <div class="personal-card-show-connection" style="margin-top: 10px">
+                            <span style="color: #009688">微信：zhy1125694337</span><br>
+                            <span style="color: #009688">QQ：1125694337</span><br>
+                        </div>
+                        <div class="personal-card-show-attention_btn">
+                            <button class="myCardBtn am-btn am-btn-secondary am-round attention_btn" data-am-offcanvas="{target: '#doc-oc-demo1'}" style="margin-top: 10px">扫描二维码关注我</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+                <ul class="am-nav am-nav-pills am-topbar-nav">
+                    <li><a class="top_bar" href="/" style="cursor: pointer;"><span class="am-icon-home"></span>&nbsp;首页</a></li>
+                    <li><a class="top_bar" href="/categories" style="cursor: pointer;"><span class="am-icon-th"></span>&nbsp;分类</a></li>
+                    <li><a class="top_bar" href="/archives" style="cursor: pointer;"><span class="am-icon-archive"></span>&nbsp;归档</a></li>
+                    <li><a class="top_bar" href="/tags" style="cursor: pointer;"><span class="am-icon-tags"></span>&nbsp;标签</a></li>
+                    <li><a class="top_bar" href="/update" style="cursor: pointer;"><span class="am-icon-calendar-plus-o"></span>&nbsp;更新</a></li>
+                    <li><a class="top_bar" href="/friendlylink" style="cursor: pointer;"><span class="am-icon-street-view"></span>&nbsp;友链</a></li>
+                    <li><a class="top_bar" href="/aboutme" style="cursor: pointer;"><span class="am-icon-user"></span>&nbsp;关于我</a> </li>
+                </ul>
+
+                <div class="am-topbar-right" th:if="${#httpServletRequest.remoteUser}">
+                    <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                        <button class="personalSpace am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle><span sec:authentication="name"></span> <span class="am-icon-caret-down"></span></button>
+                        <ul class="am-dropdown-content">
+                            <li><a href="/user" sec:authorize="hasRole('ROLE_USER')">个人主页</a></li>
+                            <li><a href="/superadmin" sec:authorize="hasRole('ROLE_SUPERADMIN')">网站后台管理</a></li>
+                            <li><a href="/user" class="news">消息<span class="newsNum am-badge am-badge-danger"></span></a></li>
+                            <li><a class="feedbackClick">反馈</a></li>
+                            <hr style="margin: 10px 0 5px 0;">
+                            <li><a th:href="@{/logout}">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="am-topbar-right" th:unless="${#httpServletRequest.remoteUser}">
+                    <a href="/register" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="color: white">注册</a>
+                </div>
+                <div class="am-topbar-right" th:unless="${#httpServletRequest.remoteUser}">
+                    <a href="/login" class="loginBtn am-btn am-btn-primary am-topbar-btn am-btn-sm" style="color: white">登录</a>
+                </div>
+                <div class="am-topbar-right writing am-hide-md-down">
+                    <a  href="/editor" target="_blank" style="text-decoration: none">
+                        <img class="am-circle" src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/loading.gif" data-src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/writing.png">
+                        <span class="write-word">写博客</span>
+                    </a>
+                </div>
+
+            </div>
         </div>
+    </div>
+    <!--页面主体-->
+    <div id="main" style="margin-top: 16px">
+
+        <div class="am-g">
+            <div class="showArticle am-u-sm-12 am-u-lg-12">
+                <div class="articles">
+                    <div class="center">
+                        <div class="empty">
+                            <header class="article-header">
+                                <h1 itemprop="name">
+                                    <a class="article-title" href="#" target="_blank">aasfasdfas&nbsp;</a>
+                                </h1>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-row" id="page-father">
+                    <div id="pagination">
+                        <ul class="am-pagination  am-pagination-centered">
+                            <li class="am-disabled"><a href="#">&laquo; 上一页</a></li>
+                            <li class="am-active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">下一页 &raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="new-comment am-show-sm-only">
+                    <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+                        <div class="am-list-news-hd am-cf">
+                            <a class="">
+                                <h2>最新评论</h2>
+                            </a>
+                        </div>
+                        <div class="am-list-news-bd">
+                            <ul class="am-list">
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="new-leaveWord am-show-sm-only">
+                    <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+                        <div class="am-list-news-hd am-cf">
+                            <a class="">
+                                <h2>最新留言</h2>
+                            </a>
+                        </div>
+                        <div class="am-list-news-bd">
+                            <ul class="am-list">
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="site-info am-show-sm-only">
+                    <h5 class="site-title">
+                        <i class="am-icon-info site-icon"></i>
+                        <strong style="margin-left: 15px">网站信息</strong>
+                    </h5>
+                    <ul class="site-default" style="height: 200px">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-lg-3">
+                <div id="right">
+
+                    <h3 class="widget-title">公告</h3>
+                    <div class="widget">
+                        <div class="bg-danger">
+                            <div class="zhy-info">
+                                <i class="am-icon-quote-left" style="float: left"></i><br>
+                                <div class="zhy-info-day">
+                                    <p>恰到好处的喜欢最舒服</p>
+                                    <p>你不用多好</p>
+                                    <p>我喜欢就好</p>
+                                    <p>我没有很好</p>
+                                    <p>你不嫌弃就好</p>
+                                    <p style="text-align: right;padding-top: 10px">--- zhy</p>
+                                </div>
+                                <i class="am-icon-quote-right" style="float: right"></i>
+                                <div class="zhy-info-opinion">
+                                    <p><strong>Welcome to my blog！！！</strong></p>
+                                    <p style="line-height: 25px">平淡对待一切<br>努力做最好的自己</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="myStory" >
+                        <div class="bg-myStory">
+                            <div><a class="bg-myStory-a" href="/mystory">我的故事</a></div>
+                        </div>
+                        <div class="myStory-words">一盆小花，一杯清茶</div>
+                    </div>
+                    <div class="myStory" >
+                        <div class="bg-myGirl">
+                            <div><a class="bg-myGirl-a" href="/mylove" target="_blank">我的女孩</a></div>
+                        </div>
+                        <div class="myStory-words">我的女孩，你还在吗</div>
+                    </div>
+                    <!--<div class="myStory" >-->
+                    <!--<div class="bg-myStory" style="background: url(img/index/ali.jpg) repeat">-->
+                    <!--<div style="font-size: 26px;text-align: center"><a href="/ali" style="text-decoration: none">999封情书</a></div>-->
+                    <!--</div>-->
+                    <!--<div class="myStory-ali" style="text-align: center">-->
+                    <!--其实，我一直都在你身后-->
+                    <!--<br>就差你一个回头-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="tag-cloud">
+                        <h3 class="widget-title">标签云</h3>
+                        <div class="widget-tag-cloud">
+                            <span>暂无标签</span>
+                        </div>
+                    </div>
+
+                    <div class="site-info am-hide-sm-only">
+                        <h5 class="site-title">
+                            <i class="am-icon-info site-icon"></i>
+                            <strong style="margin-left: 15px">网站信息</strong>
+                        </h5>
+                        <ul class="site-default" style="height: 200px">
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
     </div>
     <!--引入共有底部-->
     <div th:replace="footer :: footer"></div>
@@ -162,8 +270,8 @@
     <div th:replace="other :: other"></div>
 </div>
 
+<script src="js/categoryarticles.js"></script>
 <script src="js/all.js"></script>
-<script src="js/friendlylink.js"></script>
-<script src="js/leaveMessage.js"></script>
+<script src="js/plugs_paging.js"></script>
 </body>
 </html>

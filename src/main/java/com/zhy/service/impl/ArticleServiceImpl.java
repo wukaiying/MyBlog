@@ -308,6 +308,43 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public JSONArray findAllArticlesByCategory( String category, int rows, int pageNo ) {
+        int pageNum = pageNo;
+        int pageSize = rows;
+
+        PageHelper.startPage(pageNum,pageSize);
+        List<Article> articles = articleMapper.findAllArticles();
+        PageInfo<Article> pageInfo = new PageInfo<>(articles);
+        List<Map<String, Object>> newArticles = new ArrayList<>();
+        Map<String, Object> map;
+
+        for(Article article : articles){
+            map = new HashMap<>();
+            map.put("thisArticleUrl", "/article/" + article.getArticleId());
+            map.put("articleTags",StringAndArray.stringToArray(article.getArticleTags()));
+            map.put("articleTitle", article.getArticleTitle());
+            map.put("articleType", article.getArticleType());
+            map.put("publishDate", article.getPublishDate());
+            map.put("originalAuthor", article.getOriginalAuthor());
+            map.put("articleCategories", article.getArticleCategories());
+            map.put("articleTabloid", article.getArticleTabloid());
+            map.put("likes", article.getLikes());
+            newArticles.add(map);
+        }
+        JSONArray jsonArray = JSONArray.fromObject(newArticles);
+        Map<String, Object> thisPageInfo = new HashMap<>();
+        thisPageInfo.put("pageNum",pageInfo.getPageNum());
+        thisPageInfo.put("pageSize",pageInfo.getPageSize());
+        thisPageInfo.put("total",pageInfo.getTotal());
+        thisPageInfo.put("pages",pageInfo.getPages());
+        thisPageInfo.put("isFirstPage",pageInfo.isIsFirstPage());
+        thisPageInfo.put("isLastPage",pageInfo.isIsLastPage());
+
+        jsonArray.add(thisPageInfo);
+        return jsonArray;
+    }
+
+    @Override
     public JSONObject findArticleByArchive(String archive, int rows, int pageNum) {
         List<Article> articles;
         PageInfo<Article> pageInfo;

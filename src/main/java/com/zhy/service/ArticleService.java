@@ -84,6 +84,15 @@ public interface ArticleService {
     JSONObject findArticleByCategory(String category, int rows, int pageNum);
 
     /**
+     * 分页获得该分类下的所有文章,包括摘要
+     * @param category 分类名
+     * @param rows 一页大小
+     * @param pageNum 页数
+     * @return
+     */
+    JSONArray findAllArticlesByCategory(String category, int rows, int pageNum);
+
+    /**
      * 分页获得该归档日期下的所有文章
      * @param archive 归档日期
      * @param rows 一页大小

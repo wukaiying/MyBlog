@@ -3,6 +3,7 @@ package com.zhy.controller;
 import com.zhy.service.ArticleService;
 import com.zhy.service.CategoryService;
 import com.zhy.utils.TransCodingUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,4 +70,20 @@ public class CategoriesControl {
         return articleService.findArticleByCategoryAndOrderByTime(category, rows, pageNum);
     }
 
+    /**
+     * 获得某个分类下的所有文章并进行分页
+     */
+    @PostMapping("/getCategoryAllArticle")
+    public JSONArray getCategoryAllArticle(@RequestParam("category") String category,
+        HttpServletRequest request){
+
+        try {
+            category = TransCodingUtil.unicodeToString(category);
+        } catch (Exception e){
+        }
+        int rows = Integer.parseInt(request.getParameter("rows"));
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+
+        return articleService.findAllArticlesByCategory(category, rows, pageNum);
+    }
 }
