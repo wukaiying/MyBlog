@@ -131,6 +131,22 @@
 
 }
 
+    //填充每一个catagroy section
+    function putInArticleByCatagroy( data ) {
+        var articleSection1 =  $('.article-section-1');
+        articleSection1.empty();
+        $.each(data.result, function (index, obj) {
+            console.log(obj)
+            console.log(obj.articleUrl)
+            var center = ('<li class="am-g am-list-item-dated">'+
+                    ' <a href="/article/' + obj.articleId + '" target="_blank" class="am-list-item-hd">' + obj.articleTitle + '</a>'+
+                    '<span class="am-list-date">' + obj['publishDate'] + '</span>'+
+                    '</li>'
+            );
+            articleSection1.append(center)
+        })
+    }
+
     //填充最新评论
     function putInNewComment(data) {
         var newComment = $('.new-comment');
@@ -234,6 +250,27 @@
     });
 }
 
+
+//获取每个每个分类的前10篇文章
+    function getArticleByCatagroy( currentPage,category1 ) {
+        $.ajax({
+            type: 'GET',
+            url: '/getCategoryArticleOrderByTime',
+            dataType: 'json',
+            data: {
+                category:category1,
+                rows:"10",
+                pageNum:currentPage
+            },
+            success: function (data) {
+                console.log(data.result);
+                putInArticleByCatagroy(data);
+            },
+            error: function () {
+            }
+        });
+    }
+
     function newCommentAjax(currentPage) {
     //最新评论
     $.ajax({
@@ -305,6 +342,8 @@
 
     newCommentAjax(1);
     newLeaveWordAjax(1);
+    getArticleByCatagroy(1,"我的故事");
+
 
     //标签云
     $.ajax({

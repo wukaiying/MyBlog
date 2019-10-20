@@ -56,8 +56,11 @@ public interface ArticleMapper {
     @Select("select articleId,originalAuthor,articleTitle,articleTags,articleType,articleCategories,publishDate from article where articleTags like '%${tag}%' order by id desc")
     List<Article> findArticleByTag(@Param("tag") String tag);
 
-    @Select("select articleId,originalAuthor,articleTitle,articleTags,articleType,articleCategories,publishDate from article where articleCategories=#{category} order by id desc")
+    @Select("select articleId,originalAuthor,articleTitle,articleTags,articleType,articleCategories,publishDate,originalAuthor,articleCategories,articleTabloid,likes from article where articleCategories=#{category} order by id desc")
     List<Article> findArticleByCategory(@Param("category") String category);
+
+    @Select("select articleId,originalAuthor,articleTitle,articleTags,articleType,articleCategories,publishDate from article where articleCategories=#{category} order by publishDate desc")
+    List<Article> findArticleByCategoryAndOrderByTime(@Param("category") String category);
 
     @Select("select articleId,originalAuthor,articleTitle,articleTags,articleType,articleCategories,publishDate from article where publishDate like '%${archive}%' order by id desc")
     List<Article> findArticleByArchive(@Param("archive") String archive);

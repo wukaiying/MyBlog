@@ -347,6 +347,39 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public JSONObject findArticleByCategoryAndOrderByTime( String category, int rows, int pageNum ) {
+        List<Article> articles;
+        PageInfo<Article> pageInfo;
+        JSONArray articleJsonArray = new JSONArray();
+        PageHelper.startPage(pageNum, rows);
+        if("".equals(category)){
+            articles = articleMapper.findAllArticlesPartInfo();
+            category = "全部分类";
+        } else {
+            articles = articleMapper.findArticleByCategoryAndOrderByTime(category);
+        }
+        pageInfo = new PageInfo<>(articles);
+
+        articleJsonArray = timeLineReturn(articleJsonArray, articles);
+
+        JSONObject pageJson = new JSONObject();
+        pageJson.put("pageNum",pageInfo.getPageNum());
+        pageJson.put("pageSize",pageInfo.getPageSize());
+        pageJson.put("total",pageInfo.getTotal());
+        pageJson.put("pages",pageInfo.getPages());
+        pageJson.put("isFirstPage",pageInfo.isIsFirstPage());
+        pageJson.put("isLastPage",pageInfo.isIsLastPage());
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status",200);
+        jsonObject.put("result",articleJsonArray);
+        jsonObject.put("category",category);
+        jsonObject.put("pageInfo",pageJson);
+
+        return jsonObject;
+    }
+
+    @Override
     public JSONObject getDraftArticle(Article article, String[] articleTags, int articleGrade) {
         JSONObject returnJson = new JSONObject();
         returnJson.put("id", article.getId());

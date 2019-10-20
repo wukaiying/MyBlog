@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -180,6 +181,34 @@ public class BackControl {
         response.setHeader("articleId",String.valueOf(articleId));
         return "show";
     }
+
+    /**
+     * 跳转每一个分类的文章页面
+     */
+    @GetMapping("/article/{category}")
+    public String categoryarticles(@PathVariable("category") String category,HttpServletRequest request, HttpServletResponse response,  Model model, HashMap<String, Object> map){
+//        String username = null;
+//        try {
+//            username = principal.getName();
+//        } catch (NullPointerException e){
+//            request.getSession().removeAttribute("lastUrl");
+//            return "index";
+//        }
+//        response.setHeader("Access-Control-Allow-Origin", "*");
+//        response.setHeader("lastUrl", (String) request.getSession().getAttribute("lastUrl"));
+//        return "index";
+        model.addAttribute("say",category);
+        map.put("hello", "欢迎进入HTML页面");
+        response.setHeader("articleId",String.valueOf(category));
+        request.getSession().removeAttribute("lastUrl");
+        return "categoryarticles";
+    }
+
+
+
+
+
+
 
     /**
      * 跳转到归档页

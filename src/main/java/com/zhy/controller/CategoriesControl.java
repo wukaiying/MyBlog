@@ -52,5 +52,21 @@ public class CategoriesControl {
         return articleService.findArticleByCategory(category, rows, pageNum);
     }
 
+    /**
+     * 获取每个分类下按最近时间的前10篇文章
+     */
+    @GetMapping("/getCategoryArticleOrderByTime")
+    public JSONObject getCategoryArticleOrderByTime(@RequestParam("category") String category,
+        HttpServletRequest request){
+
+        try {
+            category = TransCodingUtil.unicodeToString(category);
+        } catch (Exception e){
+        }
+        int rows = Integer.parseInt(request.getParameter("rows"));
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+
+        return articleService.findArticleByCategoryAndOrderByTime(category, rows, pageNum);
+    }
 
 }

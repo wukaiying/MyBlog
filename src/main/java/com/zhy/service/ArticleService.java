@@ -93,6 +93,11 @@ public interface ArticleService {
     JSONObject findArticleByArchive(String archive, int rows, int pageNum);
 
     /**
+     * 获取每个分类下面按时间排序前10的文章
+     * @return
+     */
+    JSONObject findArticleByCategoryAndOrderByTime(String category,int rows, int pageNum);
+    /**
      * 获得草稿中的文章
      * @return
      */
