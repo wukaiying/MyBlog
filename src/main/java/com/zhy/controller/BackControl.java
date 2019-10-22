@@ -190,30 +190,15 @@ public class BackControl {
      * 跳转每一个分类的文章页面
      */
     @GetMapping("/category/{categoryName}")
-    public String categoryarticles(@PathVariable("categoryName") String categoryName,HttpServletRequest request, HttpServletResponse response,  Model model, HashMap<String, Object> map){
-
+    public String categoryarticles(@PathVariable("categoryName") String categoryName,HttpServletRequest request, HttpServletResponse response){
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         request.getSession().removeAttribute("lastUrl");
-        JSONArray articleMap = articleService.findAllArticlesByCategory( categoryName ,10,1);
-//        if(articleMap.get("articleTitle") != null){
-//            model.addAttribute("articleTitle",articleMap.get("articleTitle"));
-//            String articleTabloid = articleMap.get("articleTabloid");
-//            if(articleTabloid.length() <= 110){
-//                model.addAttribute("articleTabloid",articleTabloid);
-//            } else {
-//                model.addAttribute("articleTabloid",articleTabloid.substring(0,110));
-//            }
-//        }
-//        //将文章id存入响应头
-//        response.setHeader("articleId",String.valueOf(categoryName));
+        //分类的名字存入响应头
+        response.setHeader("content-type","text/html;charset=UTF-8");
+        response.setHeader("categoryName",String.valueOf(categoryName));
         return "categoryarticles";
     }
-
-
-
-
-
 
 
     /**

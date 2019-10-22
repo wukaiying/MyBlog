@@ -313,7 +313,7 @@ public class ArticleServiceImpl implements ArticleService {
         int pageSize = rows;
 
         PageHelper.startPage(pageNum,pageSize);
-        List<Article> articles = articleMapper.findAllArticles();
+        List<Article> articles = articleMapper.findAllArticlesByCategory(category);
         PageInfo<Article> pageInfo = new PageInfo<>(articles);
         List<Map<String, Object>> newArticles = new ArrayList<>();
         Map<String, Object> map;

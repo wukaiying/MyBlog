@@ -131,6 +131,21 @@ function putInArticle(data) {
 
 }
 
+//填充每一个catagroy section
+function putInArticleByCatagroy( data ,categoryName) {
+    var articleSection1 =  $('.article-section-'+ categoryName);
+    articleSection1.empty();
+    $.each(data.result, function (index, obj) {
+        console.log(obj)
+        console.log(obj.articleUrl)
+        var center = ('<li class="am-g am-list-item-dated">'+
+            ' <a href="/article/' + obj.articleId + '" target="_blank" class="am-list-item-hd">' + obj.articleTitle + '</a>'+
+            '<span class="am-list-date">' + obj['publishDate'] + '</span>'+
+            '</li>'
+        );
+        articleSection1.append(center)
+    })
+}
 
 //填充最新评论
 function putInNewComment(data) {
@@ -204,12 +219,24 @@ function putInTagsCloud(data){
 
 //首页文章分页请求
 function ajaxFirst(currentPage) {
+    var categoryName = ""
+    $.ajax({
+        type: 'HEAD', // 获取头信息，type=HEAD即可
+        url : window.location.href,
+        async:false,
+        success:function (data, status, xhr) {
+            //接受backcontroll中传来的categoryName
+            categoryName = xhr.getResponseHeader("categoryName");
+        }
+    });
+    console.log("------categoryName------"+categoryName)
     //加载时请求
     $.ajax({
         type: 'POST',
         url: '/getCategoryAllArticle',
         dataType: 'json',
         data: {
+            category:categoryName,
             rows:"10",
             pageNum:currentPage
         },
@@ -231,6 +258,27 @@ function ajaxFirst(currentPage) {
         },
         error: function () {
             alert("获得文章信息失败！");
+        }
+    });
+}
+
+
+//获取每个每个分类的前10篇文章
+function getArticleByCatagory( currentPage,category1 ) {
+    $.ajax({
+        type: 'GET',
+        url: '/getCategoryArticleOrderByTime',
+        dataType: 'json',
+        data: {
+            category:category1,
+            rows:"10",
+            pageNum:currentPage
+        },
+        success: function (data) {
+            console.log(data.result);
+            putInArticleByCatagroy(data,category1);
+        },
+        error: function () {
         }
     });
 }
@@ -306,7 +354,11 @@ ajaxFirst(1);
 
 newCommentAjax(1);
 newLeaveWordAjax(1);
-getArticleByCatagroy(1,"我的故事");
+getArticleByCatagory(1,"rdsqs");
+getArticleByCatagory(1,"grzz");
+getArticleByCatagory(1,"sxhb");
+getArticleByCatagory(1,"xxzj");
+getArticleByCatagory(1,"ndzj");
 
 
 //标签云
