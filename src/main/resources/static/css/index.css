@@ -438,3 +438,71 @@ a.tag:hover{
 /*background:repeating-linear-gradient(45deg,#fb3, #fb3 15px, #58a 0,#58a 30px);*/
 
 /*background:repeating-linear-gradient(45deg, #74ccff, #74ccff 15px, #bba985 0, #bba985 30px)*/
+
+
+/*新增css*/
+.am-list-item-hd{
+    color: #27466C
+}
+/*//点击后的a标签的字体颜色*/
+.am-list-item-hd:visited{
+    color:#5295E0;
+}
+/*鼠标停留在a标签的字体颜色*/
+.am-list-item-hd:hover{
+    color:#5295E0;
+}
+/*点击a标签是的字体颜色*/
+.am-list-item-hd:active{
+    color:#5295E0;
+}
+
+.category-title{
+    color: black;
+}
+
+.main-blue{
+    color:#42AA57;
+}
+
+.am-list-ul {
+    font-size:15px;
+    line-height: 1.2;
+    text-decoration:none;
+    border:none;
+}
+
+.am-list-ul-li {
+    line-height:normal;
+}
+
+.before_hide:before {
+    display: none;
+}
+.after_hide:after {
+    display: none;
+}
+
+.search-wrap .search-box .search-form .search-text {
+    display: block;
+    width: 100%;
+    height: 40px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: rgba(0,0,0,.87);
+    border: 1px solid #c5c5c5;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 10px 10px 32px;
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+}
+.div1,.div2 {
+    /*display: inline-block;*/
+    display: flex;
+    justify-content: flex-start;
+}

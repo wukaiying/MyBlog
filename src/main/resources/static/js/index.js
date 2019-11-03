@@ -259,11 +259,10 @@
             dataType: 'json',
             data: {
                 category:category1,
-                rows:"10",
+                rows:"9",
                 pageNum:currentPage
             },
             success: function (data) {
-                console.log(category1);
                 putInArticleByCatagory(data,category1);
             },
             error: function () {
@@ -342,11 +341,11 @@
 
     newCommentAjax(1);
     newLeaveWordAjax(1);
-    getArticleByCatagroy(1,"rdsqs");
-    getArticleByCatagroy(1,"grzz");
-    getArticleByCatagroy(1,"sxhb");
-    getArticleByCatagroy(1,"xxzj");
-    getArticleByCatagroy(1,"ndzj");
+    getArticleByCatagory(1,"rdsqs");
+    getArticleByCatagory(1,"grzz");
+    getArticleByCatagory(1,"sxhb");
+    getArticleByCatagory(1,"xxzj");
+    getArticleByCatagory(1,"ndzj");
 
     //标签云
     $.ajax({
